@@ -1,4 +1,4 @@
-# Tdot ⚡
+![Tdot](https://res.cloudinary.com/dbkhowucg/image/upload/v1721331723/tdot-splash.png)
 
 **Runtime-configurable typography system for React + Tailwind CSS**
 
