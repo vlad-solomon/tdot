@@ -37,10 +37,79 @@ const TYPOGRAPHY_TAGS = new Set([
     "address", // Address element
 ]);
 
+// Cache for resolved component configs to avoid infinite loops
+const resolvedConfigCache = new Map();
+
+function resolveComponentConfig(componentName, config, visited = new Set()) {
+    // Check cache first
+    if (resolvedConfigCache.has(componentName)) {
+        return resolvedConfigCache.get(componentName);
+    }
+
+    // Prevent infinite loops
+    if (visited.has(componentName)) {
+        console.warn(
+            `[Tdot] Circular dependency detected for "${componentName}"`
+        );
+        return null;
+    }
+
+    const entry = config[componentName];
+    if (!entry) {
+        return null;
+    }
+
+    visited.add(componentName);
+
+    let resolvedEntry = { ...entry };
+
+    // If extends is specified, resolve the parent first
+    if (entry.extends) {
+        const parentConfig = resolveComponentConfig(
+            entry.extends,
+            config,
+            visited
+        );
+        if (parentConfig) {
+            // Merge parent classes with current classes
+            const parentClasses = parentConfig.classes || "";
+            const currentClasses = entry.classes || "";
+
+            resolvedEntry = {
+                ...parentConfig,
+                ...entry,
+                classes: twMerge(parentClasses, currentClasses),
+            };
+        } else {
+            console.warn(
+                `[Tdot] Cannot extend "${entry.extends}" for "${componentName}": parent not found`
+            );
+        }
+    }
+
+    visited.delete(componentName);
+
+    // Cache the resolved config
+    resolvedConfigCache.set(componentName, resolvedEntry);
+
+    return resolvedEntry;
+}
+
 export function createTypographyComponent(componentName) {
     return function TypographyComponent({ children, className = "", ...rest }) {
         const config = useTdotConfig();
-        const entry = config[componentName];
+
+        // Clear cache when config changes (simple cache invalidation)
+        const configKeys = Object.keys(config).join(",");
+        if (
+            !createTypographyComponent._lastConfigKeys ||
+            createTypographyComponent._lastConfigKeys !== configKeys
+        ) {
+            resolvedConfigCache.clear();
+            createTypographyComponent._lastConfigKeys = configKeys;
+        }
+
+        const entry = resolveComponentConfig(componentName, config);
 
         if (!entry || !entry.tag) {
             console.warn(
