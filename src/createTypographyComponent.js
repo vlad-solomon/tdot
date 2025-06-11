@@ -1,5 +1,5 @@
 import React from "react";
-import { useTyppoConfig } from "./provider";
+import { useTdotConfig } from "./provider";
 import { twMerge } from "tailwind-merge";
 
 // Allowed typography HTML tags
@@ -39,12 +39,12 @@ const TYPOGRAPHY_TAGS = new Set([
 
 export function createTypographyComponent(componentName) {
     return function TypographyComponent({ children, className = "", ...rest }) {
-        const config = useTyppoConfig();
+        const config = useTdotConfig();
         const entry = config[componentName];
 
         if (!entry || !entry.tag) {
             console.warn(
-                `[Typpo] Skipping "${componentName}": missing required "tag" in config.`
+                `[Tdot] Skipping "${componentName}": missing required "tag" in config.`
             );
             return null;
         }
@@ -54,7 +54,7 @@ export function createTypographyComponent(componentName) {
         // Validate that the tag is a typography element
         if (!TYPOGRAPHY_TAGS.has(tag)) {
             console.warn(
-                `[Typpo] Invalid tag "${
+                `[Tdot] Invalid tag "${
                     entry.tag
                 }" for "${componentName}". Only typography elements are allowed: ${Array.from(
                     TYPOGRAPHY_TAGS

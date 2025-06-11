@@ -1,3 +1,3 @@
-export { TyppoProvider, useTyppoConfig } from "./provider";
+export { TdotProvider, useTdotConfig } from "./provider";
 export { createTypographyComponent } from "./createTypographyComponent";
 export { T } from "./T";

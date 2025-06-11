@@ -1,13 +1,13 @@
 import React, { createContext, useContext } from "react";
 
-const TyppoContext = createContext({});
+const TdotContext = createContext({});
 
-export function TyppoProvider({ config, children }) {
+export function TdotProvider({ config, children }) {
     return (
-        <TyppoContext.Provider value={config}>{children}</TyppoContext.Provider>
+        <TdotContext.Provider value={config}>{children}</TdotContext.Provider>
     );
 }
 
-export function useTyppoConfig() {
-    return useContext(TyppoContext);
+export function useTdotConfig() {
+    return useContext(TdotContext);
 }
