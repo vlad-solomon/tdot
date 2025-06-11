@@ -1,0 +1,27 @@
+{
+    "name": "typpo",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "files": [
+        "dist"
+    ],
+    "description": "Minimal runtime-configurable typography system for React + Tailwind",
+    "author": "",
+    "license": "ISC",
+    "scripts": {
+        "build": "babel src --out-dir dist",
+        "prepare": "npm run build"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.27.2",
+        "@babel/preset-react": "^7.27.1",
+        "tailwind-merge": "^2.2.0"
+    },
+    "dependencies": {
+        "tailwind-merge": "^2.2.0"
+    },
+    "peerDependencies": {
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0"
+    }
+}
