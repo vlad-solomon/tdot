@@ -3,7 +3,7 @@
 **Runtime-configurable typography system for React + Tailwind CSS**
 
 ```jsx
-import { TdotProvider, T } from "tdot";
+import { TdotProvider, T } from "@vladsolomon/tdot";
 
 const config = {
     Hero: { tag: "h1", classes: "text-6xl font-black text-gray-900" },
@@ -52,7 +52,7 @@ npm install tdot
 ### 1. Wrap your app with TdotProvider
 
 ```jsx
-import { TdotProvider } from "tdot";
+import { TdotProvider } from "@vladsolomon/tdot";
 
 const typographyConfig = {
     PageTitle: { tag: "h1", classes: "text-4xl font-bold text-gray-900" },
@@ -73,7 +73,7 @@ function App() {
 ### 2. Use your typography components
 
 ```jsx
-import { T } from "tdot";
+import { T } from "@vladsolomon/tdot";
 
 function HomePage() {
     return (
