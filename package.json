@@ -6,6 +6,13 @@
         "dist"
     ],
     "description": "Minimal runtime-configurable typography system for React + Tailwind",
+    "keywords": [
+        "react",
+        "tailwind",
+        "typography",
+        "runtime-configuration",
+        "design-system"
+    ],
     "author": "",
     "license": "ISC",
     "scripts": {
