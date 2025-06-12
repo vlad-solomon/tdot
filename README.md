@@ -44,7 +44,7 @@ Pure runtime configuration. No compilation, no CSS generation, just JavaScript.
 ## Installation
 
 ```bash
-npm install tdot
+npm install @vladsolomon/tdot
 ```
 
 ## Quick Start
