@@ -2,6 +2,10 @@
     "name": "@vladsolomon/tdot",
     "version": "1.0.3",
     "main": "dist/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vlad-solomon/tdot.git"
+    },
     "files": [
         "dist"
     ],
