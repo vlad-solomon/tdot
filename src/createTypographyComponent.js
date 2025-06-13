@@ -35,6 +35,7 @@ const TYPOGRAPHY_TAGS = new Set([
     "dfn", // Definitions/Abbreviations
     "time", // Time element
     "address", // Address element
+    "pre",
 ]);
 
 // Cache for resolved component configs to avoid infinite loops
